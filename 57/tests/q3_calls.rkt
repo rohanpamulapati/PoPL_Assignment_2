@@ -30,3 +30,7 @@
 (display (leaf-count '())) (newline)
 (display (leaf-count '(5 () ()))) (newline)
 (display (leaf-count '(1 (2 () ()) ()))) (newline)
+(print-height-and-leaves t1)
+(print-height-and-leaves t2)
+(print-height-and-leaves t3)
+(print-height-and-leaves '())
