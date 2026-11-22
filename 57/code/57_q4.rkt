@@ -1,4 +1,3 @@
-
 #lang racket/base
 
 ;; Count top-level elements of a list.
