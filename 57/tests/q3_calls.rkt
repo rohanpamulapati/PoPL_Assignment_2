@@ -1,0 +1,7 @@
+(define t1 '(4 (2 (1 () ()) (3 () ())) (6 (5 () ()) (7 () ()))))
+(define t2 '(1 () (2 () (3 () ()))))
+(define t3 '(a (b () ()) (c () ())))
+(display (inorder t1 '())) (newline)
+(display (inorder t2 '())) (newline)
+(display (inorder t3 '())) (newline)
+(display (inorder '() '())) (newline)
