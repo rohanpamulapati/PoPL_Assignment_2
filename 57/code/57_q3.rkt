@@ -21,3 +21,14 @@
       (cons (car tree)
             (preorder (cadr tree)
                       (preorder (caddr tree) acc)))))
+
+; postorder: values of tree in postorder (left, right, node), followed by acc.
+; Base case: the empty tree adds nothing, so the answer is acc.
+; Recursive case: put the node's value onto acc first (it comes last),
+; then the right subtree in front of that, then the left subtree in front.
+(define (postorder tree acc)
+  (if (null? tree)
+      acc
+      (postorder (cadr tree)
+                 (postorder (caddr tree)
+                            (cons (car tree) acc)))))

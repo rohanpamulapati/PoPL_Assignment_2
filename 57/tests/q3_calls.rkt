@@ -9,3 +9,7 @@
 (display (preorder t2 '())) (newline)
 (display (preorder t3 '())) (newline)
 (display (preorder '() '())) (newline)
+(display (postorder t1 '())) (newline)
+(display (postorder t2 '())) (newline)
+(display (postorder t3 '())) (newline)
+(display (postorder '() '())) (newline)
