@@ -88,3 +88,23 @@ equation_string(List, Equation) :-
     expr_string(LeftTree, LeftString),
     expr_string(RightTree, RightString),
     format(string(Equation), "~w=~w", [LeftString, RightString]).
+
+% generate_equation(List, Equation): Equation is one valid equation for
+% List. once/1 stops at the first one, so it gives exactly one answer, and
+% it fails when there is no valid equation (including for lists of length
+% 0 or 1).
+generate_equation(List, Equation) :-
+    once(equation_string(List, Equation)).
+
+% all_equations(List, Equations): Equations is the sorted list, without
+% duplicates, of every valid equation for List, or [] when there is none.
+% findall/3 collects every answer of equation_string and sort/2 puts them
+% in standard order and removes duplicates.
+all_equations(List, Equations) :-
+    findall(Equation, equation_string(List, Equation), All),
+    sort(All, Equations).
+
+% count_equations(List, N): N is the number of equations in all_equations.
+count_equations(List, N) :-
+    all_equations(List, Equations),
+    length(Equations, N).

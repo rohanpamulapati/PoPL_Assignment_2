@@ -11,7 +11,8 @@ run_tests :-
     split_tests,
     expr_tests,
     string_tests,
-    equation_tests.
+    equation_tests,
+    list_tests.
 
 split_tests :-
     check(split_three,
@@ -79,3 +80,30 @@ equation_tests :-
           (   findall(E, equation_string([0,0], E), L2), L2 == ["0=0"] )),
     check(equation_is_string,
           (   equation_string([4,2,5,3], E3), string(E3) )).
+
+
+list_tests :-
+    check(all_pdf_four,
+          all_equations([4,2,5,3],
+                        ["4*2-5=3", "4*2=5+3", "4-2=5-3", "4/2=5-3",
+                         "4=2*(5-3)", "4=2+(5-3)", "4=2+5-3"])),
+    check(all_none, all_equations([2,3,4], [])),
+    check(all_one, all_equations([2,4,8], ["2*4=8"])),
+    check(all_empty_list, all_equations([], [])),
+    check(all_single, all_equations([7], [])),
+    check(all_sorted_no_duplicates,
+          (   all_equations([1,1,1,1], Es), sort(Es, Es) )),
+    check(generate_in_all,
+          (   generate_equation([4,2,5,3], E1),
+              all_equations([4,2,5,3], All),
+              memberchk(E1, All) )),
+    check(generate_gives_one_answer,
+          (   findall(E2, generate_equation([4,2,5,3], E2), Found),
+              length(Found, 1) )),
+    check(generate_none_fails, \+ generate_equation([2,3,4], _)),
+    check(generate_empty_fails, \+ generate_equation([], _)),
+    check(generate_single_fails, \+ generate_equation([7], _)),
+    check(count_pdf_four, count_equations([4,2,5,3], 7)),
+    check(count_none, count_equations([2,3,4], 0)),
+    check(count_one, count_equations([2,4,8], 1)),
+    check(count_empty, count_equations([], 0)).
