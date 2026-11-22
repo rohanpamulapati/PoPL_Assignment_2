@@ -46,3 +46,23 @@
   (newline)
   (display (postorder tree '()))
   (newline))
+
+; tree-height: height of tree. The empty tree has height 0, a single node 1.
+; Base case: the empty tree has height 0.
+; Recursive case: 1 to count this node, plus the larger subtree height.
+(define (tree-height tree)
+  (if (null? tree)
+      0
+      (+ 1 (max (tree-height (cadr tree))
+                (tree-height (caddr tree))))))
+
+; leaf-count: number of leaves in tree. The empty tree has 0 leaves.
+; Base cases: the empty tree has 0 leaves; a node whose two subtrees are
+; both empty is a leaf, so it counts as 1.
+; Recursive case: any other node has the leaves of its left subtree plus
+; the leaves of its right subtree.
+(define (leaf-count tree)
+  (cond ((null? tree) 0)
+        ((and (null? (cadr tree)) (null? (caddr tree))) 1)
+        (else (+ (leaf-count (cadr tree))
+                 (leaf-count (caddr tree))))))
