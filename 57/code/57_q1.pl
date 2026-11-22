@@ -19,3 +19,8 @@ candidate_solution([
         ['AI', web, embedded, data],
         [AlexProject, BenProject, CarlaProject, DanaProject]
     ).
+% clue(1, Solution): The AI-project friend is neither in research nor Dana.
+clue(1, Solution) :-
+    member(p(Name, Dept, _, 'AI'), Solution),
+    Dept \= research,
+    Name \= 'Dana'.
