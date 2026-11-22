@@ -44,3 +44,10 @@ clue(6, Solution) :-
     member(p('Carla', Dept, _, Project), Solution),
     Dept \= development,
     Project \= embedded.
+
+% clue(7, Solution): Dana is not using Java and works in research or testing.
+clue(7, Solution) :-
+    member(p('Dana', Dept, Lang, _), Solution),
+    Lang \= java,
+    (Dept = research ; Dept = testing).
+
