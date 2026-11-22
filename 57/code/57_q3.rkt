@@ -32,3 +32,17 @@
       (postorder (cadr tree)
                  (postorder (caddr tree)
                             (cons (car tree) acc)))))
+
+; print-inorder: prints the inorder list of tree on one line.
+(define (print-inorder tree)
+  (display (inorder tree '()))
+  (newline))
+
+; print-all-traversals: prints inorder, preorder and postorder, one per line.
+(define (print-all-traversals tree)
+  (display (inorder tree '()))
+  (newline)
+  (display (preorder tree '()))
+  (newline)
+  (display (postorder tree '()))
+  (newline))
