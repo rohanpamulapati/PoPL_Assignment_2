@@ -73,3 +73,18 @@ expr_string(e(Op, Left, Right), String) :-
     operand_string(Left, left, Level, LeftString),
     operand_string(Right, right, Level, RightString),
     format(string(String), "~w~w~w", [LeftString, Op, RightString]).
+
+% equation_string(List, Equation): Equation is the canonical string of one
+% valid equation for List: the numbers are split into a left part and a
+% right part, each part gets an expression tree, and the two trees have the
+% same value.
+% Reading: using the same variable Value for both trees is what makes the
+% two sides equal. It fails when List has fewer than two numbers, because
+% split_list does.
+equation_string(List, Equation) :-
+    split_list(List, Left, Right),
+    expr(Left, LeftTree, Value),
+    expr(Right, RightTree, Value),
+    expr_string(LeftTree, LeftString),
+    expr_string(RightTree, RightString),
+    format(string(Equation), "~w=~w", [LeftString, RightString]).
