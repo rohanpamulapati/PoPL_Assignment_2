@@ -51,3 +51,8 @@ clue(7, Solution) :-
     Lang \= java,
     (Dept = research ; Dept = testing).
 
+% clue(8, Solution): Data project belongs to research and not JavaScript.
+clue(8, Solution) :-
+    member(p(_, research, Lang, data), Solution),
+    Lang \= javascript.
+
