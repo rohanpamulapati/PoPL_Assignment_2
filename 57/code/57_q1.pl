@@ -93,11 +93,10 @@ print_solution([Friend|Rest]) :-
     print_friend(Friend),
     print_solution(Rest).
 
-% Print all solutions satisfying clues 1 through 8.
+% Print the unique solution satisfying all nine clues.
 main :-
-    candidate_solution(Solution),
-    satisfies_all([1,2,3,4,5,6,7,8], Solution),
-    print_solution(Solution),
-    nl,
-    fail.
-main.
+    once((
+        candidate_solution(Solution),
+        satisfies_all([1,2,3,4,5,6,7,8,9], Solution)
+    )),
+    print_solution(Solution).
