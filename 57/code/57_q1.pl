@@ -71,3 +71,22 @@ count_solutions(Active, N) :-
         N
     ).
 
+% Print one friend's assignment.
+print_friend(p(Name, Dept, Lang, Project)) :-
+    format('~w = [~w, ~w, ~w]~n',
+           [Name, Dept, Lang, Project]).
+
+% Print all friends in a solution.
+print_solution([]).
+print_solution([Friend|Rest]) :-
+    print_friend(Friend),
+    print_solution(Rest).
+
+% Print all solutions satisfying clues 1 through 8.
+main :-
+    candidate_solution(Solution),
+    satisfies_all([1,2,3,4,5,6,7,8], Solution),
+    print_solution(Solution),
+    nl,
+    fail.
+main.
