@@ -36,4 +36,6 @@ clue(3, Solution) :-
 clue(4, Solution) :-
     member(p('Ben', Dept, _, web), Solution),
     Dept \= testing.
-       
+% clue(5, Solution): The Java user works in design.
+clue(5, Solution) :-
+    member(p(_, design, java, _), Solution). 
