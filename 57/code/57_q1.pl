@@ -56,3 +56,18 @@ clue(8, Solution) :-
     member(p(_, research, Lang, data), Solution),
     Lang \= javascript.
 
+% Check whether a solution satisfies every active clue.
+satisfies_all([], _).
+satisfies_all([N|Rest], Solution) :-
+    clue(N, Solution),
+    satisfies_all(Rest, Solution).
+
+% Count candidate solutions satisfying the active clues.
+count_solutions(Active, N) :-
+    aggregate_all(
+        count,
+        (candidate_solution(Solution),
+         satisfies_all(Active, Solution)),
+        N
+    ).
+
