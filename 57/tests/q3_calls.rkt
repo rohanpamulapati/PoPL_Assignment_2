@@ -5,3 +5,7 @@
 (display (inorder t2 '())) (newline)
 (display (inorder t3 '())) (newline)
 (display (inorder '() '())) (newline)
+(display (preorder t1 '())) (newline)
+(display (preorder t2 '())) (newline)
+(display (preorder t3 '())) (newline)
+(display (preorder '() '())) (newline)
