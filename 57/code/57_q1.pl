@@ -39,3 +39,8 @@ clue(4, Solution) :-
 % clue(5, Solution): The Java user works in design.
 clue(5, Solution) :-
     member(p(_, design, java, _), Solution). 
+% clue(6, Solution): Carla is not on embedded and not in development.
+clue(6, Solution) :-
+    member(p('Carla', Dept, _, Project), Solution),
+    Dept \= development,
+    Project \= embedded.
