@@ -14,7 +14,6 @@
       (cons (f (car lst))
             (my-map f (cdr lst)))))
 
-
 ;; Return a function that inserts x into qualifying nested lists.
 (define (make-inserter x len-ok?)
   (letrec ((insert
@@ -37,3 +36,8 @@
                              item)))
                    lst)))))
     insert))
+
+;; Insert x into every list whose original length is less than n.
+(define (insert-if-short x lst n)
+  ((make-inserter x (lambda (k) (< k n))) lst))
+    
